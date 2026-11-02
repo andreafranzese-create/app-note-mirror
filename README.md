@@ -240,14 +240,3 @@ $ oc get pods,svc,pvc,route
 ```
 
 ![Output comandi](docs/output-comandi.png)
-
----
-
-## Problemi incontrati e soluzioni
-
-| Problema | Causa | Soluzione |
-|---|---|---|
-| `npm ci` falliva nella build | `npm ci` richiede `package-lock.json`, che era stato rimosso | sostituito con `npm install --omit=dev` nel Dockerfile |
-| Frontend: `getaddrinfo ENOTFOUND db-service` | l'app cercava `db-service`, ma il Service del DB si chiama `postgres-service` | `server.js` legge anche le variabili `POSTGRES_*`; l'host arriva da `POSTGRES_HOST` |
-| Database creato con il nome sbagliato | l'immagine `postgres` ignora `POSTGRES_NAME`: riconosce solo `POSTGRES_DB` | la chiave `POSTGRES_NAME` del Secret viene esposta come variabile `POSTGRES_DB` |
-| DB: `role "..." does not exist` | PostgreSQL crea l'utente solo alla **prima** inizializzazione; la PVC conteneva già dati creati con un utente diverso | eliminati StatefulSet e PVC e ricreati, così l'inizializzazione è ripartita con i valori corretti del Secret |
