@@ -17,15 +17,33 @@ spec:
       - name: postgres
         image: postgres:15
         ports:
-        - containerPort: 5432
+          - containerPort: 5432
         env:          
-        - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata
+          - name: PGDATA
+            value: /var/lib/postgresql/data/pgdata
+          - name: POSTGRES_HOST
+            valueFrom:
+              secretKeyRef:
+                name: db-secret     
+                key: POSTGRES_HOST
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: POSTGRES_PASSWORD  
+          - name: POSTGRES_NAME
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: POSTGRES_NAME
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: POSTGRES_USER
         envFrom: 
           - configMapRef:
               name: db-conf
-          - secretRef: 
-              name: db-secret
         volumeMounts:
         - name: postgres-data
           mountPath: /var/lib/postgresql/data
