@@ -33,7 +33,7 @@ spec:
                 secretKeyRef:
                   name: db-secret
                   key: POSTGRES_PASSWORD  
-            - name: POSTGRES_NAME
+            - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
                   name: db-secret
