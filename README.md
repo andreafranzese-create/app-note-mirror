@@ -16,10 +16,7 @@ Progetto realizzato per l'esercizio pratico *"OpenShift: Architettura Multi-Pod 
 6. [Database](#database)
 7. [Secret e credenziali](#secret-e-credenziali)
 8. [Pipeline Jenkins](#pipeline-jenkins)
-9. [Deploy manuale (senza Jenkins)](#deploy-manuale-senza-jenkins)
-10. [Test e verifica](#test-e-verifica)
-11. [Risultati](#risultati)
-12. [Problemi incontrati e soluzioni](#problemi-incontrati-e-soluzioni)
+9. [Test e verifica](#test-e-verifica)
 
 ---
 
